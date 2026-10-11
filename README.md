@@ -84,10 +84,12 @@ python -m http.server 8000 --bind 127.0.0.1
 | `researchExperience` | `organization`、`role`、`period`、`description`、`url` |
 | `publications` | `title`、`authors`（字符串列表）、`venue`、`year`、`links`（包含 `pdf`、`code`、`project`） |
 | `projects` | `name`、`description`、`technologies`（字符串列表）、`year`、`github`、`url`、`image`、`imageAlt` |
-| `awards` | 展示 `name` 和 `date`（例如 `Jun. 2026`）；`date` 为空时展示 `year`，仍按 `year` 倒序；可选 `url`。`organization`、`description` 可保留作资料记录，不展示在简洁列表中 |
+| `awards` | 依次展示 `name`、`organization`、`date`（例如 `Jun. 2026`）；`date` 为空时展示 `year`，仍按 `year` 倒序；可选 `url`。`description` 可保留作资料记录，不展示在正文中 |
 | `service` | `title`、`organization`、`period`、`description`、`url` |
 
-Awards 当前采用简洁的“名称 + 时间”列表。只知道年份时填写 `year` 即可；知道月份时还可填写 `date`。例如：`{"name": "Example Award", "year": 2026, "date": "Jun. 2026"}`。网页内容使用英文；本 README 的中文说明用于日常维护。
+Awards 当前依次展示奖项名称、颁奖单位、证书日期，日期单独一行，替代原来的学年度或获奖说明。只知道年份时填写 `year` 即可；知道月份时还可填写 `date`。例如：`{"name": "Example Award", "organization": "Example University", "year": 2026, "date": "Jun. 2026"}`。网页内容使用英文；本 README 的中文说明用于日常维护。
+
+CSS 或 JavaScript 更新时可以修改 `index.html` 中资源路径的 `v` 参数，让浏览器读取新文件；它不会影响只修改 JSON 的日常更新。遇到旧页面时可以使用 `Ctrl+F5` 强制刷新。
 
 当前侧栏 Email 链接采用 Gmail 网页写信模式，收件人由 `person.email` 自动填写，访问者可能需要先登录自己的 Google 账号。点击后不会自动发送邮件，也不会打开收件人的邮箱账户。侧栏同时显示完整邮箱地址，访问者也可复制到其他邮箱服务中写信。
 
@@ -263,5 +265,6 @@ GitHub 登录由 Git / GitHub Desktop 引导完成，不要把密码或令牌写
 - 本次栏目更新已检查桌面及 320px 手机布局、Publications / Awards 切换与后退、有内容时替换提示、清空提示时隐藏栏目，以及三项真实获奖的年份顺序。
 - 英文奖项及简介链接更新已检查：三个简介链接的地址与新窗口保护、普通文字段落兼容、带链接段落的安全文本渲染、危险协议过滤、空段落忽略，以及 320px 宽度下简介无横向溢出。
 - 简洁奖项和邮件模式更新已检查：奖项只显示名称与年月、页面正文无中文翻译、JSON 错误提示为英文、Gmail 链接的收件人和新窗口属性、默认邮件应用模式兼容，以及 320px 宽度无横向溢出。Gmail 登录后的实际发信流程不属于网站测试，也未发送测试邮件。
+- 后续日期布局调整已检查：每项依次显示名称、单位、日期三行；日期采用 14px 正文颜色；三项日期为 Jun. 2026、Jun. 2026、Oct. 2025；桌面和 320px 手机均无横向溢出，带版本参数的 CSS / JavaScript 资源返回 HTTP 200。
 
 浏览器检查使用独立的临时配置，位于 `.qa/`，该目录已被 Git 忽略，也不会被工作流发布。首次真实 GitHub Actions 部署已成功；远程网页的浏览器核验曾因网络超时未完成，也未进行所有浏览器或真实手机设备的兼容性测试。

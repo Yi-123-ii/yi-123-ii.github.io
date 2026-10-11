@@ -282,7 +282,9 @@
     return records(data.awards, "name").slice().sort((a, b) => yearOf(b) - yearOf(a)).map(item => {
       const entry = element("article", "entry award");
       const date = text(item.date) || (yearOf(item) ? String(yearOf(item)) : "");
-      entry.append(entryHeading(text(item.name), date, item.url));
+      entry.append(entryHeading(text(item.name), "", item.url));
+      if (text(item.organization)) entry.append(element("p", "entry-subtitle", text(item.organization)));
+      if (date) entry.append(element("p", "award-date", date));
       return entry;
     });
   }
