@@ -1,0 +1,139 @@
+{
+  "site": {
+    "title": "Your Name | Academic Homepage",
+    "description": "The academic homepage of Your Name, a student interested in computer systems, data management, and efficient machine learning.",
+    "language": "en",
+    "updatedAt": "October 2026",
+    "demo": true
+  },
+  "person": {
+    "name": "Your Name",
+    "nameLocal": "你的姓名",
+    "role": "Undergraduate Student",
+    "affiliation": "Your University",
+    "department": "School of Computer Science",
+    "location": "Your City, China",
+    "email": "your.name@example.com",
+    "photo": "./assets/avatar-placeholder.svg",
+    "photoAlt": "Placeholder portrait — replace with your own photo"
+  },
+  "social": {
+    "github": "https://github.com/",
+    "googleScholar": "https://scholar.google.com/",
+    "cv": "./assets/cv-example.html",
+    "additionalLinks": []
+  },
+  "about": {
+    "paragraphs": [
+      "Welcome! I am an undergraduate student in Computer Science at Your University. I am learning to build reliable software and exploring how thoughtful systems design can support scientific research.",
+      "My interests lie in computer systems, data management, and efficient machine learning. I enjoy understanding how ideas work, implementing them in C++, and evaluating them through reproducible experiments.",
+      "This is an example profile. The education, research, publications, projects, awards, and service entries below are illustrative placeholders, not claims about a real person. Replace them with your own information before publishing."
+    ],
+    "researchInterests": [
+      "Computer Systems",
+      "Data Management",
+      "Efficient Machine Learning"
+    ]
+  },
+  "education": [
+    {
+      "institution": "Your University",
+      "degree": "B.Eng. in Computer Science · Example entry",
+      "period": "2024 – Present",
+      "description": "Selected coursework: Data Structures, Algorithms, Computer Architecture, and Linear Algebra.",
+      "url": ""
+    }
+  ],
+  "researchExperience": [
+    {
+      "organization": "Example Systems Laboratory",
+      "role": "Student Research Assistant · Example entry",
+      "period": "2026 – Present",
+      "description": "Exploring reproducible benchmarking and memory-efficient data structures. Replace this example with your own research experience.",
+      "url": ""
+    },
+    {
+      "organization": "Example Undergraduate Research Program",
+      "role": "Student Researcher · Example entry",
+      "period": "Summer 2025",
+      "description": "Studied indexing methods and documented experimental results in a small collaborative project.",
+      "url": ""
+    }
+  ],
+  "publications": [
+    {
+      "title": "A Reproducible Benchmark for Lightweight Data Systems (Example)",
+      "authors": ["Your Name", "Example Collaborator"],
+      "venue": "Example Student Research Workshop — illustrative entry",
+      "year": 2026,
+      "links": {
+        "pdf": "./assets/publication-example.pdf",
+        "code": "https://github.com/",
+        "project": "https://example.com/"
+      }
+    },
+    {
+      "title": "Understanding Memory-Efficient Indexing in Practice (Example)",
+      "authors": ["Example Collaborator", "Your Name"],
+      "venue": "Example Research Journal — illustrative entry",
+      "year": 2025,
+      "links": {
+        "pdf": "",
+        "code": "",
+        "project": ""
+      }
+    }
+  ],
+  "projects": [
+    {
+      "name": "Mini Search Engine (Example)",
+      "description": "A learning project that indexes a small document collection and supports keyword queries. It illustrates inverted indexes, ranking, and performance measurement.",
+      "technologies": ["C++17", "CMake", "Inverted Index"],
+      "year": 2026,
+      "github": "https://github.com/",
+      "url": "",
+      "image": "./assets/project-search.svg",
+      "imageAlt": "A simple search pipeline: documents, index, and query results"
+    },
+    {
+      "name": "Academic Homepage (Example)",
+      "description": "A small academic website with a JSON-driven profile, responsive layout, and automatic deployment to GitHub Pages.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "JSON"],
+      "year": 2026,
+      "github": "https://github.com/",
+      "url": "",
+      "image": "",
+      "imageAlt": ""
+    }
+  ],
+  "awards": [
+    {
+      "name": "Undergraduate Research Recognition (Example)",
+      "organization": "Example University",
+      "year": 2026,
+      "description": "Illustrative award entry. Replace with an award you have received."
+    },
+    {
+      "name": "Programming Competition Award (Example)",
+      "organization": "Example Student Association",
+      "year": 2025,
+      "description": "Illustrative award entry."
+    }
+  ],
+  "service": [
+    {
+      "title": "Reading Group Organizer (Example)",
+      "organization": "Example Systems Reading Group",
+      "period": "2026 – Present",
+      "description": "Helped organize paper discussions and shared reading notes with fellow students.",
+      "url": ""
+    },
+    {
+      "title": "Programming Community Volunteer (Example)",
+      "organization": "Example Campus Programming Club",
+      "period": "2025 – 2026",
+      "description": "Supported introductory C++ study sessions and community activities.",
+      "url": ""
+    }
+  ]
+}

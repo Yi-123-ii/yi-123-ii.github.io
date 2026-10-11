@@ -1,0 +1,23 @@
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
+
+# Local tooling and preview artifacts
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+.qa/
+_site/
+upload-ready/
+*.log
+
+# Credentials should never be committed
+.env
+.env.*
+!.env.example

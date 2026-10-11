@@ -1,0 +1,46 @@
+{
+  "site": {
+    "title": "Ziyi Tang | Academic Homepage",
+    "description": "The personal homepage of Ziyi Tang, a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University.",
+    "language": "en",
+    "updatedAt": "October 2026",
+    "demo": false
+  },
+  "person": {
+    "name": "Ziyi Tang",
+    "nameLocal": "唐梓怡",
+    "role": "Second-year Undergraduate Student",
+    "affiliation": "Wuhan University",
+    "department": "School of Computer Science",
+    "location": "",
+    "email": "xiaoyitang222@gmail.com",
+    "photo": "./assets/avatar.png",
+    "photoAlt": "Ziyi Tang's avatar"
+  },
+  "social": {
+    "github": "https://github.com/Yi-123-ii",
+    "googleScholar": "",
+    "cv": "",
+    "additionalLinks": []
+  },
+  "about": {
+    "paragraphs": [
+      "I am Ziyi Tang (唐梓怡), a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University."
+    ],
+    "researchInterests": []
+  },
+  "education": [
+    {
+      "institution": "Wuhan University",
+      "degree": "Computer Science and Technology · 计算机科学与技术专业本科在读",
+      "period": "",
+      "description": "School of Computer Science · 计算机学院",
+      "url": ""
+    }
+  ],
+  "researchExperience": [],
+  "publications": [],
+  "projects": [],
+  "awards": [],
+  "service": []
+}
