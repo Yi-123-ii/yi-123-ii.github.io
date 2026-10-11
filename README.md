@@ -54,7 +54,7 @@ python -m http.server 8000 --bind 127.0.0.1
 | --- | --- |
 | `site.title` | 浏览器标题 |
 | `site.description` | 网页描述 |
-| `site.language` | 内容语言，例如 `en`、`zh-CN`；导航标签仍为固定英文 |
+| `site.language` | 内容语言，例如 `en`；当前网页界面、提示和个人资料统一使用英文 |
 | `site.updatedAt` | 手动维护的更新日期文本 |
 | `site.demo` | 示例提示；替换完资料后改成 `false` |
 | `site.emptySectionMessages` | 可选的空栏目提示；支持 `publications` 和 `awards`，有非空文字时保留对应空栏目 |
@@ -65,6 +65,7 @@ python -m http.server 8000 --bind 127.0.0.1
 | `person.email` | 纯邮箱地址，不加 `mailto:` |
 | `person.photo` / `photoAlt` | 头像路径 / 图片替代文本 |
 | `social.github` / `googleScholar` / `cv` | GitHub、Google Scholar、简历链接 |
+| `social.emailMode` | `gmail` 在浏览器打开 Gmail 写信页；`mailto`（默认）调用访问者的邮件应用 |
 | `social.additionalLinks` | 额外链接列表，每项包含 `label`、`url`，可选 `icon` |
 | `about.paragraphs` | 简介段落；支持普通字符串，或包含 `parts` 的对象来添加文字链接 |
 | `about.researchInterests` | 研究方向字符串列表 |
@@ -83,8 +84,14 @@ python -m http.server 8000 --bind 127.0.0.1
 | `researchExperience` | `organization`、`role`、`period`、`description`、`url` |
 | `publications` | `title`、`authors`（字符串列表）、`venue`、`year`、`links`（包含 `pdf`、`code`、`project`） |
 | `projects` | `name`、`description`、`technologies`（字符串列表）、`year`、`github`、`url`、`image`、`imageAlt` |
-| `awards` | `name`、`organization`、`year`、`description`，可选 `url` |
+| `awards` | 展示 `name` 和 `date`（例如 `Jun. 2026`）；`date` 为空时展示 `year`，仍按 `year` 倒序；可选 `url`。`organization`、`description` 可保留作资料记录，不展示在简洁列表中 |
 | `service` | `title`、`organization`、`period`、`description`、`url` |
+
+Awards 当前采用简洁的“名称 + 时间”列表。只知道年份时填写 `year` 即可；知道月份时还可填写 `date`。例如：`{"name": "Example Award", "year": 2026, "date": "Jun. 2026"}`。网页内容使用英文；本 README 的中文说明用于日常维护。
+
+当前侧栏 Email 链接采用 Gmail 网页写信模式，收件人由 `person.email` 自动填写，访问者可能需要先登录自己的 Google 账号。点击后不会自动发送邮件，也不会打开收件人的邮箱账户。侧栏同时显示完整邮箱地址，访问者也可复制到其他邮箱服务中写信。
+
+不需要 Gmail 模式时，将 `social.emailMode` 改为 `mailto`，即可调用访问者设备设置的邮件应用；未设置邮件应用时可能无法打开。收件地址的服务类型（Gmail、QQ 等）不会决定访问者用哪个应用发送邮件。
 
 ### 在简介中添加超链接
 
@@ -255,5 +262,6 @@ GitHub 登录由 Git / GitHub Desktop 引导完成，不要把密码或令牌写
 - 示例 PDF 的结构、文字和页面渲染。
 - 本次栏目更新已检查桌面及 320px 手机布局、Publications / Awards 切换与后退、有内容时替换提示、清空提示时隐藏栏目，以及三项真实获奖的年份顺序。
 - 英文奖项及简介链接更新已检查：三个简介链接的地址与新窗口保护、普通文字段落兼容、带链接段落的安全文本渲染、危险协议过滤、空段落忽略，以及 320px 宽度下简介无横向溢出。
+- 简洁奖项和邮件模式更新已检查：奖项只显示名称与年月、页面正文无中文翻译、JSON 错误提示为英文、Gmail 链接的收件人和新窗口属性、默认邮件应用模式兼容，以及 320px 宽度无横向溢出。Gmail 登录后的实际发信流程不属于网站测试，也未发送测试邮件。
 
 浏览器检查使用独立的临时配置，位于 `.qa/`，该目录已被 Git 忽略，也不会被工作流发布。首次真实 GitHub Actions 部署已成功；远程网页的浏览器核验曾因网络超时未完成，也未进行所有浏览器或真实手机设备的兼容性测试。

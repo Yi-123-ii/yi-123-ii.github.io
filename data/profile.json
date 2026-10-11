@@ -6,13 +6,13 @@
     "updatedAt": "October 2026",
     "demo": false,
     "emptySectionMessages": {
-      "publications": "No publications listed yet. / 暂无论文信息。",
-      "awards": "No awards listed yet. / 暂无获奖信息。"
+      "publications": "No publications listed yet.",
+      "awards": "No awards listed yet."
     }
   },
   "person": {
     "name": "Ziyi Tang",
-    "nameLocal": "唐梓怡",
+    "nameLocal": "",
     "role": "Second-year Undergraduate Student",
     "affiliation": "Wuhan University",
     "department": "School of Computer Science",
@@ -22,6 +22,7 @@
     "photoAlt": "Ziyi Tang's avatar"
   },
   "social": {
+    "emailMode": "gmail",
     "github": "https://github.com/Yi-123-ii",
     "googleScholar": "",
     "cv": "",
@@ -29,7 +30,7 @@
   },
   "about": {
     "paragraphs": [
-      "I am Ziyi Tang (唐梓怡), a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University.",
+      "I am Ziyi Tang, a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University.",
       {
         "parts": [
           "I joined the ",
@@ -47,9 +48,9 @@
   "education": [
     {
       "institution": "Wuhan University",
-      "degree": "Computer Science and Technology · 计算机科学与技术专业本科在读",
+      "degree": "Undergraduate studies in Computer Science and Technology",
       "period": "",
-      "description": "School of Computer Science · 计算机学院",
+      "description": "School of Computer Science",
       "url": ""
     }
   ],
@@ -61,18 +62,21 @@
       "name": "Active Participant in Social Activities",
       "organization": "Wuhan University",
       "year": 2026,
+      "date": "Jun. 2026",
       "description": "Academic year 2025-2026."
     },
     {
       "name": "Second Prize, 6th Wuhan University Short Video Competition on Practicing Core Socialist Values",
       "organization": "Undergraduate School, Wuhan University; Communist Youth League Committee, Wuhan University; School of Marxism, Wuhan University",
       "year": 2026,
+      "date": "Jun. 2026",
       "description": "Team award in the Ideological Morality and Rule of Law course competition."
     },
     {
       "name": "Outstanding Participant in Military Training",
       "organization": "Wuhan University",
       "year": 2025,
+      "date": "Oct. 2025",
       "description": "Student military training, 2025."
     }
   ],

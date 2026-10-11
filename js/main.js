@@ -116,8 +116,11 @@
     const contacts = element("ul", "contact-list");
     const email = text(person.email);
     const social = data.social || {};
+    const emailURL = !email ? "" : social.emailMode === "gmail"
+      ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`
+      : `mailto:${email}`;
     const items = [
-      { label: "Email", url: email ? `mailto:${email}` : "", icon: "email" },
+      { label: "Email", url: emailURL, icon: "email" },
       { label: "GitHub", url: social.github, icon: "github" },
       { label: "Google Scholar", url: social.googleScholar, icon: "scholar" },
       { label: "CV", url: social.cv, icon: "cv" },
@@ -136,6 +139,7 @@
     if (contacts.childElementCount) {
       const group = element("div", "contact-group");
       group.append(element("h2", "sidebar-label", "Connect"), contacts);
+      if (email) group.append(element("p", "email-address", email));
       profile.append(group);
     }
     const address = element("address", "address");
@@ -274,6 +278,15 @@
     });
   }
 
+  function renderAwards(data) {
+    return records(data.awards, "name").slice().sort((a, b) => yearOf(b) - yearOf(a)).map(item => {
+      const entry = element("article", "entry award");
+      const date = text(item.date) || (yearOf(item) ? String(yearOf(item)) : "");
+      entry.append(entryHeading(text(item.name), date, item.url));
+      return entry;
+    });
+  }
+
   function renderSimple(items, titleKey, dateKey, sortByYear = false) {
     const entries = records(items, titleKey).slice();
     if (sortByYear) entries.sort((a, b) => yearOf(b) - yearOf(a));
@@ -328,7 +341,7 @@
 
   function render(data) {
     if (!data || typeof data !== "object" || Array.isArray(data) || !text(data.person?.name)) {
-      throw new Error("Please set person.name in data/profile.json. 请填写配置中的 person.name。");
+      throw new Error("Please set person.name in data/profile.json.");
     }
     const site = data.site || {};
     document.title = text(site.title) || `${text(data.person.name)} | Academic Homepage`;
@@ -338,16 +351,16 @@
     addSection("about", "About", "About Me", renderAbout(data));
     addSection("publications", "Publications", "Publications", renderPublications(data), site.emptySectionMessages?.publications);
     addSection("projects", "Projects", "Projects", renderProjects(data));
-    addSection("awards", "Awards", "Awards", renderSimple(data.awards, "name", "year", true), site.emptySectionMessages?.awards);
+    addSection("awards", "Awards", "Awards and Honors", renderAwards(data), site.emptySectionMessages?.awards);
     addSection("service", "Service", "Service", renderSimple(data.service, "title", "period"));
     navigation.hidden = !availableSections.length;
     status.hidden = Boolean(availableSections.length);
     if (!availableSections.length) {
-      status.replaceChildren(element("h2", "", "Profile coming soon"), element("p", "", "There is no content to display yet. / 暂无内容，欢迎稍后再来。"));
+      status.replaceChildren(element("h2", "", "Profile coming soon"), element("p", "", "There is no content to display yet."));
     }
     footer.append(element("span", "", `© ${new Date().getFullYear()} ${text(data.person.name)}`));
     if (text(site.updatedAt)) footer.append(element("span", "", `Last updated · ${text(site.updatedAt)}`));
-    if (site.demo === true) footer.append(element("p", "demo-note", "Example profile only · 示例内容，请在发布前替换为自己的资料。"));
+    if (site.demo === true) footer.append(element("p", "demo-note", "Example profile only. Replace the sample information before publishing."));
     footer.hidden = false;
     activateSection(location.hash.slice(1));
   }
@@ -361,13 +374,13 @@
     availableSections = [];
     profile.hidden = navigation.hidden = footer.hidden = true;
     status.hidden = false;
-    status.replaceChildren(element("h1", "", "Academic Homepage"), element("p", "", "Loading profile… / 正在加载个人资料…"));
+    status.replaceChildren(element("h1", "", "Academic Homepage"), element("p", "", "Loading profile…"));
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
     try {
-      if (location.protocol === "file:") throw new Error("Open this site with a local HTTP server. 请通过本地服务器打开，不能直接双击 index.html；启动方法见 README.md。");
+      if (location.protocol === "file:") throw new Error("Open this site with a local HTTP server instead of opening index.html directly. See README.md for instructions.");
       const response = await fetch("./data/profile.json", { cache: "no-store", signal: controller.signal });
-      if (!response.ok) throw new Error(`Profile request failed (HTTP ${response.status}). 请检查 data/profile.json 的路径。`);
+      if (!response.ok) throw new Error(`Profile request failed (HTTP ${response.status}). Please check the path to data/profile.json.`);
       const data = await response.json();
       render(data);
       document.body.className = "";
@@ -375,12 +388,12 @@
       profile.hidden = navigation.hidden = sections.hidden = footer.hidden = true;
       document.body.className = "has-error";
       const message = error.name === "SyntaxError"
-        ? "The profile JSON is invalid. 请检查双引号、逗号和括号；JSON 不能包含注释。"
+        ? "The profile JSON is invalid. Check double quotes, commas, and brackets. JSON cannot contain comments."
         : error.name === "AbortError"
-          ? "The request timed out. 网络请求超时，请检查连接后重试。"
+          ? "The request timed out. Check your connection and try again."
           : error.message;
-      status.replaceChildren(element("h1", "", "Unable to load profile / 资料加载失败"), element("p", "", message), element("p", "", "Please try again or contact the site owner. 请重试，或联系网站维护者。"));
-      const retry = element("button", "retry-button", "Try again / 重试");
+      status.replaceChildren(element("h1", "", "Unable to load profile"), element("p", "", message), element("p", "", "Please try again or contact the site owner."));
+      const retry = element("button", "retry-button", "Try again");
       retry.type = "button";
       retry.addEventListener("click", () => { sections.hidden = false; loadProfile(); });
       status.append(retry);

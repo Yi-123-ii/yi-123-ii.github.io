@@ -9,7 +9,7 @@
   },
   "person": {
     "name": "Your Name",
-    "nameLocal": "你的姓名",
+    "nameLocal": "",
     "role": "Undergraduate Student",
     "affiliation": "Your University",
     "department": "School of Computer Science",
@@ -19,6 +19,7 @@
     "photoAlt": "Placeholder portrait — replace with your own photo"
   },
   "social": {
+    "emailMode": "mailto",
     "github": "https://github.com/",
     "googleScholar": "https://scholar.google.com/",
     "cv": "./assets/cv-example.html",
