@@ -29,7 +29,18 @@
   },
   "about": {
     "paragraphs": [
-      "I am Ziyi Tang (唐梓怡), a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University."
+      "I am Ziyi Tang (唐梓怡), a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University.",
+      {
+        "parts": [
+          "I joined the ",
+          { "text": "Totem Database Laboratory", "url": "http://totemdb.whu.edu.cn/" },
+          " in my freshman year, where I am fortunate to be advised by ",
+          { "text": "Prof. Sheng Wang", "url": "https://sheng.whu.edu.cn/" },
+          ". I really appreciate the guidance from ",
+          { "text": "Xingyu Qu", "url": "https://whu-xingyuqu.github.io/" },
+          " at Wuhan University."
+        ]
+      }
     ],
     "researchInterests": []
   },
@@ -47,22 +58,22 @@
   "projects": [],
   "awards": [
     {
-      "name": "社会活动先进个人",
-      "organization": "武汉大学",
+      "name": "Active Participant in Social Activities",
+      "organization": "Wuhan University",
       "year": 2026,
-      "description": "2025-2026 学年度。"
+      "description": "Academic year 2025-2026."
     },
     {
-      "name": "第六届武汉大学“社会主义核心价值观我践行”微视频大赛二等奖",
-      "organization": "武汉大学本科生院、共青团武汉大学委员会、武汉大学马克思主义学院",
+      "name": "Second Prize, 6th Wuhan University Short Video Competition on Practicing Core Socialist Values",
+      "organization": "Undergraduate School, Wuhan University; Communist Youth League Committee, Wuhan University; School of Marxism, Wuhan University",
       "year": 2026,
-      "description": "《思想道德与法治》课程比赛，团队奖项。"
+      "description": "Team award in the Ideological Morality and Rule of Law course competition."
     },
     {
-      "name": "军训优秀参训学员",
-      "organization": "武汉大学",
+      "name": "Outstanding Participant in Military Training",
+      "organization": "Wuhan University",
       "year": 2025,
-      "description": "2025 年学生军训。"
+      "description": "Student military training, 2025."
     }
   ],
   "service": []

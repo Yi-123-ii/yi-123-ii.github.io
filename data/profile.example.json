@@ -28,7 +28,14 @@
     "paragraphs": [
       "Welcome! I am an undergraduate student in Computer Science at Your University. I am learning to build reliable software and exploring how thoughtful systems design can support scientific research.",
       "My interests lie in computer systems, data management, and efficient machine learning. I enjoy understanding how ideas work, implementing them in C++, and evaluating them through reproducible experiments.",
-      "This is an example profile. The education, research, publications, projects, awards, and service entries below are illustrative placeholders, not claims about a real person. Replace them with your own information before publishing."
+      "This is an example profile. The education, research, publications, projects, awards, and service entries below are illustrative placeholders, not claims about a real person. Replace them with your own information before publishing.",
+      {
+        "parts": [
+          "You can link to ",
+          { "text": "a project website", "url": "https://example.com/" },
+          " using this paragraph format."
+        ]
+      }
     ],
     "researchInterests": [
       "Computer Systems",

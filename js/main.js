@@ -161,12 +161,25 @@
     return heading;
   }
 
+  // Paragraphs may contain plain text or explicit text/link parts, never HTML.
+  function biographyParagraph(value) {
+    const node = element("p");
+    const parts = typeof value === "string" ? [value.trim()] : Array.isArray(value?.parts) ? value.parts : [];
+    for (const part of parts) {
+      if (typeof part === "string") node.append(document.createTextNode(part));
+      else if (part && typeof part === "object" && text(part.text)) {
+        node.append(link(part.text, part.url) || document.createTextNode(part.text));
+      }
+    }
+    return node.textContent.trim() ? node : null;
+  }
+
   function renderAbout(data) {
     const nodes = [];
-    const paragraphs = strings(data.about?.paragraphs);
+    const paragraphs = Array.isArray(data.about?.paragraphs) ? data.about.paragraphs.map(biographyParagraph).filter(Boolean) : [];
     if (paragraphs.length) {
       const bio = element("div", "biography section-block");
-      paragraphs.forEach(paragraph => bio.append(element("p", "", paragraph)));
+      paragraphs.forEach(paragraph => bio.append(paragraph));
       nodes.push(bio);
     }
     const interests = strings(data.about?.researchInterests);

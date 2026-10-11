@@ -66,7 +66,7 @@ python -m http.server 8000 --bind 127.0.0.1
 | `person.photo` / `photoAlt` | 头像路径 / 图片替代文本 |
 | `social.github` / `googleScholar` / `cv` | GitHub、Google Scholar、简历链接 |
 | `social.additionalLinks` | 额外链接列表，每项包含 `label`、`url`，可选 `icon` |
-| `about.paragraphs` | 简介段落，每个字符串单独显示一段 |
+| `about.paragraphs` | 简介段落；支持普通字符串，或包含 `parts` 的对象来添加文字链接 |
 | `about.researchInterests` | 研究方向字符串列表 |
 | `education` | 教育经历列表 |
 | `researchExperience` | 研究经历列表 |
@@ -85,6 +85,22 @@ python -m http.server 8000 --bind 127.0.0.1
 | `projects` | `name`、`description`、`technologies`（字符串列表）、`year`、`github`、`url`、`image`、`imageAlt` |
 | `awards` | `name`、`organization`、`year`、`description`，可选 `url` |
 | `service` | `title`、`organization`、`period`、`description`、`url` |
+
+### 在简介中添加超链接
+
+普通段落继续使用字符串；需要链接的段落可以使用以下格式，与普通段落一起放在 `about.paragraphs` 数组中：
+
+```json
+{
+  "parts": [
+    "I work with ",
+    { "text": "Example Laboratory", "url": "https://example.com/" },
+    "."
+  ]
+}
+```
+
+每个字符串片段会保留空格；链接用 `text` 和 `url` 表示。文字仍按纯文本安全渲染，不支持 HTML。无效链接会退回普通文字，空段落会被忽略。个人经历应填写自己的真实信息。
 
 ### 添加一篇论文
 
@@ -238,5 +254,6 @@ GitHub 登录由 Git / GitHub Desktop 引导完成，不要把密码或令牌写
 - JavaScript 语法、JSON 语法，以及 8 个本地资源的 HTTP 200 响应。
 - 示例 PDF 的结构、文字和页面渲染。
 - 本次栏目更新已检查桌面及 320px 手机布局、Publications / Awards 切换与后退、有内容时替换提示、清空提示时隐藏栏目，以及三项真实获奖的年份顺序。
+- 英文奖项及简介链接更新已检查：三个简介链接的地址与新窗口保护、普通文字段落兼容、带链接段落的安全文本渲染、危险协议过滤、空段落忽略，以及 320px 宽度下简介无横向溢出。
 
 浏览器检查使用独立的临时配置，位于 `.qa/`，该目录已被 Git 忽略，也不会被工作流发布。首次真实 GitHub Actions 部署已成功；远程网页的浏览器核验曾因网络超时未完成，也未进行所有浏览器或真实手机设备的兼容性测试。
