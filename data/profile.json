@@ -4,7 +4,11 @@
     "description": "The personal homepage of Ziyi Tang, a second-year undergraduate student majoring in Computer Science and Technology at the School of Computer Science, Wuhan University.",
     "language": "en",
     "updatedAt": "October 2026",
-    "demo": false
+    "demo": false,
+    "emptySectionMessages": {
+      "publications": "No publications listed yet. / 暂无论文信息。",
+      "awards": "No awards listed yet. / 暂无获奖信息。"
+    }
   },
   "person": {
     "name": "Ziyi Tang",
@@ -41,6 +45,25 @@
   "researchExperience": [],
   "publications": [],
   "projects": [],
-  "awards": [],
+  "awards": [
+    {
+      "name": "社会活动先进个人",
+      "organization": "武汉大学",
+      "year": 2026,
+      "description": "2025-2026 学年度。"
+    },
+    {
+      "name": "第六届武汉大学“社会主义核心价值观我践行”微视频大赛二等奖",
+      "organization": "武汉大学本科生院、共青团武汉大学委员会、武汉大学马克思主义学院",
+      "year": 2026,
+      "description": "《思想道德与法治》课程比赛，团队奖项。"
+    },
+    {
+      "name": "军训优秀参训学员",
+      "organization": "武汉大学",
+      "year": 2025,
+      "description": "2025 年学生军训。"
+    }
+  ],
   "service": []
 }

@@ -4,7 +4,8 @@
     "description": "The academic homepage of Your Name, a student interested in computer systems, data management, and efficient machine learning.",
     "language": "en",
     "updatedAt": "October 2026",
-    "demo": true
+    "demo": true,
+    "emptySectionMessages": {}
   },
   "person": {
     "name": "Your Name",

@@ -1,6 +1,6 @@
 # Academic Personal Homepage
 
-一个适合长期维护的学术个人主页。使用 HTML5、CSS3、原生 JavaScript 和 JSON，没有框架、数据库、字体 CDN 或网站构建依赖。当前 `data/profile.json` 已填入唐梓怡 / Ziyi Tang 提供的资料，尚未提供的栏目为空并自动隐藏。通用示例保存在 `data/profile.example.json`，其中的经历不代表任何真实人物。
+一个适合长期维护的学术个人主页。使用 HTML5、CSS3、原生 JavaScript 和 JSON，没有框架、数据库、字体 CDN 或网站构建依赖。当前 `data/profile.json` 已填入唐梓怡 / Ziyi Tang 提供的资料和三项获奖；Publications 保留导航并显示暂无信息提示，Awards 展示真实奖项，其他尚未提供的栏目自动隐藏。通用示例保存在 `data/profile.example.json`，其中的经历不代表任何真实人物。
 
 ## 目录
 
@@ -57,6 +57,7 @@ python -m http.server 8000 --bind 127.0.0.1
 | `site.language` | 内容语言，例如 `en`、`zh-CN`；导航标签仍为固定英文 |
 | `site.updatedAt` | 手动维护的更新日期文本 |
 | `site.demo` | 示例提示；替换完资料后改成 `false` |
+| `site.emptySectionMessages` | 可选的空栏目提示；支持 `publications` 和 `awards`，有非空文字时保留对应空栏目 |
 | `person.name` | 姓名，唯一必填的资料字段 |
 | `person.nameLocal` | 中文姓名或第二种语言的姓名，可留空 |
 | `person.role` / `affiliation` | 身份 / 学校或单位 |
@@ -127,9 +128,11 @@ python -m http.server 8000 --bind 127.0.0.1
 
 以上是对象内部的字段片段，不是独立 JSON 文件；最后一个字段后不能留逗号。
 
-- 空列表会同时隐藏导航项和正文栏目。
+- 默认情况下，空列表会同时隐藏导航项和正文栏目。
+- 当前主页特意保留 Publications 和 Awards。在 `site.emptySectionMessages` 中配置对应提示文字即可显示空栏目；删除对应字段或将提示改为 `""`，空栏目就会隐藏。例如 `"emptySectionMessages": {"publications": "No publications listed yet.", "awards": "No awards listed yet."}`。
+- 填入有效论文或获奖条目后，页面自动显示条目，暂无信息提示会消失；不用修改 HTML 或 JavaScript。
 - 简介、研究方向、教育、研究经历分别为空时，只隐藏对应的小分区；它们全部为空时隐藏 About。
-- 所有内容都为空时，显示简洁的 “Profile coming soon”，保留有效的侧栏资料。
+- 所有内容都为空、也没有配置空栏目提示时，显示简洁的 “Profile coming soon”，保留有效的侧栏资料。
 - 可选文字或链接用 `""`；空链接不会产生按钮。
 - 教育项必须有 `institution`；研究经历项必须有 `organization`；论文和服务项必须有 `title`；项目和获奖项必须有 `name`。只有空对象、空格或没有这些主字段的条目会被忽略。
 - 手机、平板、桌面使用同一个配置。导航支持直接访问 `#publications` 等链接，也支持浏览器前进、后退。
@@ -198,7 +201,7 @@ GitHub 登录由 Git / GitHub Desktop 引导完成，不要把密码或令牌写
 
 - 点击 About、Publications、Projects、Awards、Service，确认选中状态和内容切换正确。
 - 调整窗口大小，或在手机浏览器打开，确认没有横向溢出。
-- 把一个列表设为空数组，确认导航和模块都消失。
+- 把一个列表设为空数组，确认默认隐藏；Publications 和 Awards 有空栏目提示配置时应保留，清空提示后应隐藏。
 - 把头像或项目图片路径改为不存在的文件，确认占位效果正常。
 - 临时修改 JSON 使其无效，确认出现错误和重试按钮；恢复合法 JSON 后点击重试。
 - 检查自己的邮箱、Google Scholar、GitHub、CV 和每篇论文的资源链接。程序验证链接格式与协议，不能保证第三方网站内容仍然存在。
@@ -211,15 +214,15 @@ GitHub 登录由 Git / GitHub Desktop 引导完成，不要把密码或令牌写
 | JSON 解析失败 | 检查引号、逗号、括号；运行 `python -m json.tool` |
 | 修改后看不到更新 | 等 Actions 完成，再刷新；必要时强制刷新浏览器 |
 | 没有 PDF 按钮 | `links.pdf` 为空或不是受支持的地址；填写路径并上传文件 |
-| 栏目消失 | 对应列表为空，或条目缺少主字段 |
+| 栏目消失 | 对应列表为空，或条目缺少主字段；Publications / Awards 可通过 `site.emptySectionMessages` 保留空栏目 |
 
 ## 5. 维护约定
 
 个人信息只存放在 JSON，样式只修改 CSS，页面行为只修改 JavaScript。可配置文字全部采用 DOM 的 `textContent` 或文本节点渲染；链接仅允许 HTTP、HTTPS 和联系链接中的 `mailto:`，会拒绝 `javascript:`、`data:` 等协议。新窗口链接使用 `noopener noreferrer`。
 
-网页无访问统计、无远程字体、无浏览器端依赖。头像、论文和 CV 使用本地静态文件即可。当前个人配置已清除示例经历、论文和获奖；没有相应真实经历时继续使用空数组，新增经历时只填写自己的真实资料。
+网页无访问统计、无远程字体、无浏览器端依赖。头像、论文和 CV 使用本地静态文件即可。当前个人配置中的获奖来自用户提供的证书，仅公开奖项名称、机构、年份和简短说明；证书原件保留在用户本地，不属于网站发布文件。没有相应真实经历时继续使用空数组，新增经历时只填写自己的真实资料。
 
-开发阶段的本地检查不等于远程部署验收。GitHub 工作流需要你上传仓库并启用 Pages 后才能真正执行，远程网址也需要在那之后确认。
+开发阶段的本地检查不等于远程部署验收。当前仓库已上传并启用 Pages，首次 GitHub Actions 部署已成功；公开网址为 `https://yi-123-ii.github.io/`。后续更新仍应检查 Actions 结果，并打开网址确认。
 
 ## 6. 本次开发检查
 
@@ -234,5 +237,6 @@ GitHub 登录由 Git / GitHub Desktop 引导完成，不要把密码或令牌写
 - HTML / script 字符串按纯文本显示，危险协议链接被过滤。
 - JavaScript 语法、JSON 语法，以及 8 个本地资源的 HTTP 200 响应。
 - 示例 PDF 的结构、文字和页面渲染。
+- 本次栏目更新已检查桌面及 320px 手机布局、Publications / Awards 切换与后退、有内容时替换提示、清空提示时隐藏栏目，以及三项真实获奖的年份顺序。
 
-浏览器检查使用独立的临时配置，位于 `.qa/`，该目录已被 Git 忽略，也不会被工作流发布。没有运行真实 GitHub Actions、没有验证远程 Pages 地址，也未进行所有浏览器或真实手机设备的兼容性测试。
+浏览器检查使用独立的临时配置，位于 `.qa/`，该目录已被 Git 忽略，也不会被工作流发布。首次真实 GitHub Actions 部署已成功；远程网页的浏览器核验曾因网络超时未完成，也未进行所有浏览器或真实手机设备的兼容性测试。

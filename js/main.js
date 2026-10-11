@@ -274,8 +274,12 @@
     });
   }
 
-  function addSection(id, label, title, nodes) {
-    if (!nodes.length) return; // No content: neither a section nor a navigation item.
+  function addSection(id, label, title, nodes, emptyMessage = "") {
+    if (!nodes.length) {
+      const message = text(emptyMessage);
+      if (!message) return; // Empty sections stay hidden unless explicitly configured.
+      nodes = [element("p", "empty-state", message)];
+    }
     const section = element("section");
     section.id = id;
     section.hidden = true;
@@ -319,9 +323,9 @@
     if (/^[a-z]{2,3}(-[a-z0-9]{2,8})*$/i.test(text(site.language))) document.documentElement.lang = text(site.language);
     renderProfile(data);
     addSection("about", "About", "About Me", renderAbout(data));
-    addSection("publications", "Publications", "Publications", renderPublications(data));
+    addSection("publications", "Publications", "Publications", renderPublications(data), site.emptySectionMessages?.publications);
     addSection("projects", "Projects", "Projects", renderProjects(data));
-    addSection("awards", "Awards", "Awards", renderSimple(data.awards, "name", "year", true));
+    addSection("awards", "Awards", "Awards", renderSimple(data.awards, "name", "year", true), site.emptySectionMessages?.awards);
     addSection("service", "Service", "Service", renderSimple(data.service, "title", "period"));
     navigation.hidden = !availableSections.length;
     status.hidden = Boolean(availableSections.length);

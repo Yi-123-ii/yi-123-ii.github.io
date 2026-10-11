@@ -55,6 +55,7 @@ svg { display: block; }
 .section-block > h3 { color: var(--blue); font-size: 20px; font-weight: 650; padding-bottom: 10px; margin-bottom: 19px; border-bottom: 1px solid var(--line); }
 .biography p + p { margin-top: 16px; }
 .biography { font-size: 15px; line-height: 1.9; }
+.empty-state { color: var(--muted); font-size: 14px; line-height: 1.8; }
 .interest-list, .technology-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .interest-list li { border: 1px solid #d9e7f6; background: var(--pale-blue); color: var(--blue-dark); border-radius: 5px; padding: 4px 11px; font-size: 13px; }
 .entry { padding: 20px 0; border-bottom: 1px solid var(--line); }
